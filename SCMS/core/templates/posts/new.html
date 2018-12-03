@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block head %}
+<meta name="description" content="Zhvillues programesh i pasionuar i cili kerkon gjithmonë sfidën e ardhshme" />
+{{ super() }}
+{% endblock %}
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block content %}
+
+<div class="newPost">
+    <input type="text" placeholder="Enter title here">
+    <!-- trumbowyg usage, give credit on the readme -->
+    <div class="editor"></div>
+    <div class="buttons">
+	<!--<button type="button">save draft</button>-->
+	<button data-func="clear" type="button">clear</button>
+	<button data-func="save" type="button">save</button>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block footerScripts %}
+    <script src="https://cdn.jsdelivr.net/npm/trumbowyg@2.12.2/dist/trumbowyg.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.12.2/dist/ui/trumbowyg.min.css">
+<script type="application/javascript" src="{{ url_for('main.admin', filename='js/user/posts.js') }}"></script>
+{% endblock %}

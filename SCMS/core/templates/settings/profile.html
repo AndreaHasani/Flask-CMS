@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block head %}
+<meta name="description" content="Zhvillues programesh i pasionuar i cili kerkon gjithmonë sfidën e ardhshme" />
+{{ super() }}
+{% endblock %}
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block content %}
+
+<div class="settings profile flex one">
+
+    <div class="general">
+	<h2>General Settings</h2>
+	<div class="inputs">
+	    <div class="username">
+		<label>Username:</label>
+		<input name="username" type="text">
+	    </div>
+	    <div class="password">
+		<label>Password:</label>
+		<input name="password" type="email">
+		<button type="button" class='generate'>Generate Password</button>
+	    </div>
+	    <div class="usertype">
+		<label>User Type:</label>
+		<select name="userType">
+		    <option value="admin">Admin</option>
+		    <option value="subscriber">Subscriber</option>
+		    <option value="author">author</option>
+		    <option value="moderator">Moderator</option>
+		</select>
+	    </div>
+	</div>
+    </div>
+
+    <div class="personal">
+	<h2>Personal Info</h2>
+	<div class="inputs">
+	    <div class="firstname">
+		<label>First Name:</label>
+		<input name="firstname" type="text">
+	    </div>
+	    <div class="lastname">
+		<label>Last Name:</label>
+		<input name="lastname" type="text">
+	    </div>
+	    <div class="email">
+		<label>Email:</label>
+		<input name="password" type="password">
+	    </div>
+	    <div class="description">
+		<label>Description:</label>
+		<textarea name="description" rows="10" cols="30">
+		</textarea>
+	    </div>
+	    <div class="profilePic">
+		<label>Profile Pic:</label>
+		<img class="profileimg" src="https://www.colchestersun.com/wp-content/uploads/2018/01/user-dummy.png">
+		<input name="upload" type="file" id="fileinput"/>
+	    </div>
+	</div>
+    </div>
+
+
+</div>
+
+{% endblock %}
+{% block footerScripts %}
+    <script src="https://cdn.jsdelivr.net/npm/trumbowyg@2.12.2/dist/trumbowyg.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.12.2/dist/ui/trumbowyg.min.css">
+<script type="application/javascript" src="{{ url_for('main.admin', filename='js/user/settings.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+<meta name="description" content="Zhvillues programesh i pasionuar i cili kerkon gjithmonë sfidën e ardhshme" />
+{{ super() }}
+{% endblock %}
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block content %}
+<nav class="mobile-menu">
+<label for="show-menu" class="show-menu"><span>Menu</span><div class="lines"></div></label>
+<input type="checkbox" id="show-menu">
+<a href="#" id="title">Flask Base Template</a>
+<ul id="menu">
+    <li><a href="#home">Home</a></li>
+    <li>			<a href="#">About</a>		</li>
+    <li>			<a href="#">Portfolio</a>		</li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+</nav>
+
+<div class="main-container flex two">
+<div class="login-page">
+  <div class="form">
+      <form class="register-form" method="POST" action={{ url_for('users.register') }}>
+	{{ form.hidden_tag() }}
+	<input type="text" name="{{ form.username.name }}" placeholder="{{ form.username.name|title }}" required/>
+	<input type="password" name="{{ form.password.name }}" placeholder="{{ form.password.name|title }}" required/>
+      <input type="email" name="email" placeholder="Email..." required/>
+      <button type="submit">create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form" method="POST" action={{ url_for('users.login') }}>
+	{{ form.hidden_tag() }}
+	<input type="text" name="{{ form.username.name }}" placeholder="{{ form.username.name|title }}..." required/>
+	<input type="password" name="{{ form.password.name }}" placeholder="{{ form.password.name|title }}..." required/>
+      <button type="submit">login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+</div> <!-- #main-container -->
+
+{% endblock %}

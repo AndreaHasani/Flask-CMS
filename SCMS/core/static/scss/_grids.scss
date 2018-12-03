@@ -1,0 +1,288 @@
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+}
+
+$inputColor: #717171;
+$main-color-ligher: #c1cfd9;
+
+$red: #f97e76;
+
+.newPost {
+  margin: 0 auto;
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 1000px;
+  min-width: 480px;
+  background: #fff;
+  font-family: "Asap", sans-serif;
+
+  input[type="text"] {
+    padding-left: 15px;
+    width: 100%;
+    height: 45px;
+    border: 1px solid $main-color-ligher;
+    box-shadow: inset 0px 0px 3px $main-color-ligher;
+    outline: none;
+    font-family: "Bree Serif", serif;
+    font-size: 24px;
+    color: $inputColor;
+    margin-bottom: 20px;
+  }
+  .trumbowyg-button-pane button {
+    margin: 0;
+  }
+  .trumbowyg-button-pane {
+    background: $main-color;
+    border-bottom: 2px solid #6681a9;
+  }
+
+  .trumbowyg-button-pane button,
+  .trumbowyg-modal svg {
+    color: $main-color-ligher;
+  }
+
+  .trumbowyg-box svg,
+  .trumbowyg-modal svg {
+    fill: $main-color-ligher;
+  }
+  .trumbowyg-button-pane .trumbowyg-button-group::after {
+    margin: 7px 5px;
+    height: 21px;
+  }
+
+  .editor {
+    .saved {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: block;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      background: $main-color-ligher;
+      font-weight: bold;
+      border-top-left-radius: 15px;
+    }
+  }
+  .buttons {
+    float: right;
+
+    button {
+      float: left;
+      width: 120px;
+      height: 45px;
+      border: none;
+      color: #fff;
+      text-transform: uppercase;
+      outline: none;
+      margin-right: 20px;
+      font-weight: bold;
+      background: $main-color-ligher;
+      text-decoration: none;
+
+      &:last-of-type {
+        margin-right: 0px;
+        background: $red;
+
+        &:hover {
+          background: lighten($red, 5%);
+        }
+      }
+
+      &:active {
+        box-shadow: inset 0px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      &:hover {
+        background: lighten($main-color-ligher, 5%);
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+.viewPost,
+.viewMedia {
+  padding: 30px 80px;
+  margin: 0;
+
+
+  .items.head {
+    margin-bottom: 50px;
+    padding: 20px 0 0 0;
+
+    div {
+      &:after {
+	  box-shadow: 5px 0 10px #c9cfd8;
+	  content: "";
+	  background-color: #c9cfd8;
+	  position: absolute;
+	  width: 3px;
+	  height: 100%;
+	  right: 0;
+	  display: block;
+      }
+
+      &:last-child:after {
+	content: none;
+      }
+    }
+
+    &:before {
+      content: none;
+    }
+  }
+
+  .items {
+    color: black;
+    min-height: 100px;
+    max-height: 150px;
+    padding: 15px 0;
+    position: relative;
+
+    div {
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    p {
+      margin: 0;
+      word-break: break-word;
+    }
+
+    .title {
+      color: black;
+      justify-content: left;
+
+      flex-grow: 1;
+    }
+    .excerpt,
+    .desc {
+      justify-content: left;
+      flex-grow: 2;
+    }
+    .id,
+    .status,
+    .author {
+      width: 150px;
+    }
+    &:nth-child(2):before,
+    &:after {
+      box-shadow: 5px 0px 10px #c9cfd8;
+      content: "";
+      background-color: $main-color-lighter;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      right: 0;
+      display: block;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
+  }
+}
+
+.settings {
+  margin: 0;
+  padding: 30px;
+
+  .personal {
+    padding-top: 30px;
+  }
+
+  .inputs {
+    width: 1000px;
+
+    div {
+      display: flex;
+      padding: 10px 0;
+      label {
+        width: 200px;
+        font-size: 1.3em;
+        padding-right: 0.5em;
+      }
+
+      input,
+      select {
+        width: 400px;
+      }
+
+      textarea {
+        padding: 13px;
+      }
+    }
+
+    .description {
+      display: block;
+
+      textarea {
+        display: block;
+        width: 600px;
+        margin-top: 5px;
+      }
+    }
+
+    .profilePic {
+      label {
+        align-items: center;
+        display: flex;
+      }
+      img {
+        height: 200px;
+        cursor: pointer;
+      }
+      #fileinput {
+        display: none;
+      }
+    }
+
+    .password {
+      button {
+        padding: 0;
+        width: 200px;
+        margin: 0 0 0 20px;
+        border-radius: 4px;
+        background-color: $main-color;
+        color: white;
+      }
+    }
+  }
+}
+
+.viewMedia {
+  .thumbnail {
+    width: 200px;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+}
