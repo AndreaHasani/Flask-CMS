@@ -11,215 +11,28 @@
 
 <div class="viewPost flex one">
 
+    {% for post in items %}
     <div class="items flex six head">
 	<div class="id">
-	    <p>Id</p>
+	    <a href='{{ url_for('users.post_edit', id=post.id) }}'>{{ post.id }}</a>
 	</div>
 	<div class="title">
-	    <p>Title</p>
+	    <p>{{ post.title }}</p>
 	</div>
 	<div class="desc">
-	    <p>Excerpt</p>
+	    <p>{{ post.excerpt }}</p>
 	</div>
 	<div class="author">
-	    <p>User</p>
+	    <p>{{ post.author.username }}</p>
 	</div>
 	<div class="date">
-	    <p>Upload Date</p>
+	    <p>{{ post.date_posted }}</p>
 	</div>
 	<div class="status">
-	    <p>Status</p>
+	    <p>{{ post.status }}</p>
 	</div>
     </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>001</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>002</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>003</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>001</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>002</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>003</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>001</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>002</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
-
-    <div class="items flex six">
-	<div class="id">
-	    <p>003</p>
-	</div>
-	<div class="title">
-	    <p>Blodnje, gereenna</p>
-	</div>
-	<div class="excerpt">
-	    <p>Blonde, shoulder-length hair slightly reveals a chiseled, worried face. Sparkling silver eyes, set lightly within their sockets, watch hungrily over the armies they've nearly died for for so long.</p>
-	</div>
-	<div class="author">
-	    <p>admin</p>
-	</div>
-	<div class="date">
-	    <p>10 1997</p>
-	</div>
-	<div class="status">
-	    <p>Posted</p>
-	</div>
-    </div>
+    {% endfor %}
 
 </div>
 

@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user
 from SCMS import db
 from SCMS.core.users.model import loginForm, registerForm
+from SCMS.core.models import Users, Posts
 from SCMS.core.users.util import login_required
 import os
 
@@ -86,14 +87,21 @@ def dashboard():
     return render_template("dashboard/dashboard.html")
 
 
-# Users Posts
-@users.route("/posts/new", methods=["GET", "POST"])
-def posts_new():
-    return render_template("posts/new.html")
+@users.route("/posts", methods=["GET", "POST"])
+def posts():
+    posts = Posts.query.all()
+    return render_template("posts/view.html", items=posts)
 
-@users.route("/posts/view", methods=["GET", "POST"])
-def posts_view():
-    return render_template("posts/view.html")
+
+@users.route("/post/add", methods=["GET", "POST"])
+def post_add():
+    return render_template("posts/post.html")
+
+
+@users.route("/post/<int:id>", methods=["GET", "POST"])
+def post_edit(id):
+    post = Posts.query.filter_by(id=id).first()
+    return render_template("posts/post.html", item=post)
 
 
 @users.route("/api/posts/new", methods=["POST"])
@@ -107,16 +115,18 @@ def posts_new_api():
         return jsonify(code=404)
 
 
-
 @users.route("/media/view", methods=["GET", "POST"])
 def media_view():
     return render_template("media/view.html")
+
 
 @users.route("/media/upload", methods=["GET", "POST"])
 def media_upload():
     return render_template("media/upload.html")
 
 # Users settings
+
+
 @users.route("/settings/profile", methods=["GET", "POST"])
 def settings_profile():
     return render_template("settings/profile.html")

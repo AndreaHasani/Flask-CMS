@@ -14,6 +14,8 @@ class Users(UserMixin, db.Model):
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
     active = db.Column(db.Boolean())
+    profilePic = db.Column(db.String(256))
+
 
     # Relationships
     roles = db.relationship('Role', secondary='user_roles')
@@ -21,6 +23,9 @@ class Users(UserMixin, db.Model):
 
     def get_roles(self):
         return [item.name.lower() for item in self.roles]
+
+    def get_username(self):
+        return self.username
 
     def add_role(self, role):
         self.roles.append(Role(name=role))
@@ -79,12 +84,6 @@ class Users(UserMixin, db.Model):
     def __repr(self):
         return f"User('{self.username}'), '{self.email}')"
 
-    def __init__(self, username, email, password):
-        self.username = username
-        self.password = password
-        self.email = email
-        self.active = 1
-
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -92,12 +91,13 @@ class Posts(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
+    excerpt = db.Column(db.Text, nullable=True)
+    status = db.Column(db.String(30), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id'), nullable=False)
 
+
 # Define the Role data-model
-
-
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer(), primary_key=True)

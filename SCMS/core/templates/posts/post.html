@@ -9,8 +9,9 @@
 
 {% block content %}
 
+{% if item is undefined %}
 <div class="newPost">
-    <input type="text" placeholder="Enter title here">
+    <input type="text" placeholder="Enter title here" value=''>
     <!-- trumbowyg usage, give credit on the readme -->
     <div class="editor"></div>
     <div class="buttons">
@@ -19,6 +20,25 @@
 	<button data-func="save" type="button">save</button>
     </div>
 </div>
+{% endif %}
+
+
+{% if item is defined %}
+<div class="newPost" id='{{ item.id }}'>
+    <input type="text" placeholder="Enter title here" value='{{ item.title }}'>
+    <!-- trumbowyg usage, give credit on the readme -->
+    <div class="editor">
+	<div class='holder'>
+	    {{ item.content|safe }}
+	</div>
+    </div>
+    <div class="buttons">
+	<!--<button type="button">save draft</button>-->
+	<button data-func="clear" type="button">clear</button>
+	<button data-func="save" type="button">save</button>
+    </div>
+</div>
+{% endif %}
 
 
 {% endblock %}

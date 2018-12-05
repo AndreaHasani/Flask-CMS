@@ -55,8 +55,8 @@
 		<div class="postsClass">
 		    <a href="#">Posts</a>
 		    <div class="cascade">
-			<a href="{{ url_for('users.posts_view') }}">View Posts</a>
-			<a href="{{ url_for('users.posts_new') }}">Add New</a>
+			<a href="{{ url_for('users.posts') }}">View Posts</a>
+			<a href="{{ url_for('users.post_add') }}">Add New</a>
 		    </div>
 		</div>
 		<div class="mediaClass">
@@ -71,7 +71,6 @@
 		    <a href="#">Settings</a>
 		    <div class="cascade">
 			<a href="{{ url_for('users.settings_profile') }}">Profile</a>
-			<a href="{{ url_for('users.posts_new') }}">Add New</a>
 		    </div>
 		</div>
 

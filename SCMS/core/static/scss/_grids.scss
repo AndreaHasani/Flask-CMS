@@ -25,6 +25,10 @@ $red: #f97e76;
   background: #fff;
   font-family: "Asap", sans-serif;
 
+  .holder {
+    display: none;
+  }
+
   input[type="text"] {
     padding-left: 15px;
     width: 100%;

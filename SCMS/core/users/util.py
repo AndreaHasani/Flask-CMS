@@ -23,11 +23,11 @@ def login_required(*role_names):
         @wraps(f)
         def decorator(*args, **kwargs):
 
-            if None in role_names:
+            if None in role_names and current_user.is_authenticated:
                 return f(*args, **kwargs)
-
-            if not current_user.is_authenticated:
+            else:
                 return current_app.login_manager.unauthorized()
+
             if not current_user.has_roles(*role_names):
                 return current_app.login_manager.unauthorized()
 
