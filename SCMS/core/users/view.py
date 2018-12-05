@@ -101,6 +101,7 @@ def post_add():
 @users.route("/post/<int:id>", methods=["GET", "POST"])
 def post_edit(id):
     post = Posts.query.filter_by(id=id).first()
+    category = ["post Type  " + str(x) for x in range(15)]
     return render_template("posts/post.html", item=post)
 
 

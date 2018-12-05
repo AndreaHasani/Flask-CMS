@@ -1,6 +1,6 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
-  var post = $(".newPost").attr("id");
+  var post = $(".post .left .top").attr("id");
 
   if (typeof post !== "undefined") {
     var content = $(".editor .holder").html();
@@ -17,7 +17,51 @@ $(document).ready(function() {
         .slice(-10)
     );
   });
+
+  // Post Tags
+  $(".tags button").click(function() {
+    var tag = $(".tags input").val();
+    var check = $(".tags-added p").length;
+    if (check === 0) {
+      $(".tags-added").append("<p>" + tag + "</p>");
+    } else {
+      $(".tags-added").append(", <p>" + tag + "</p>");
+    }
+  });
 });
+
+// Accordion
+
+$(document).ready(function() {
+  $(".set > a").addClass("active");
+  $(".set > div").show();
+  $(".set > a").on("click", function() {
+    if ($(this).hasClass("active")) {
+      $(this).removeClass("active");
+      $(this)
+        .siblings(".content")
+        .slideUp(200);
+      $(".set > a i")
+        .removeClass("fa-minus")
+        .addClass("fa-plus");
+    } else {
+      $(".set > a i")
+        .removeClass("fa-minus")
+        .addClass("fa-plus");
+      $(this)
+        .find("i")
+        .removeClass("fa-plus")
+        .addClass("fa-minus");
+      $(this).addClass("active");
+      $(this)
+        .siblings(".content")
+        .slideDown(200);
+    }
+  });
+});
+
+// Checked Checkbox
+var checked = $('input[name="chk[]"]:checked');
 
 // if (typeof Storage !== "undefined") {
 //   $(".editor").keypress(function() {

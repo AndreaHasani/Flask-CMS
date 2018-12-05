@@ -10,34 +10,124 @@
 {% block content %}
 
 {% if item is undefined %}
-<div class="newPost">
-    <input type="text" placeholder="Enter title here" value=''>
-    <!-- trumbowyg usage, give credit on the readme -->
-    <div class="editor"></div>
-    <div class="buttons">
-	<!--<button type="button">save draft</button>-->
-	<button data-func="clear" type="button">clear</button>
-	<button data-func="save" type="button">save</button>
+<div class="post">
+    <div class="left">
+	<input type="text" placeholder="Enter title here" value=''>
+	<!-- trumbowyg usage, give credit on the readme -->
+	<div class="editor"></div>
+	<div class="buttons">
+	    <!--<button type="button">save draft</button>-->
+	    <button data-func="clear" type="button">clear</button>
+	    <button data-func="save" type="button">save</button>
+	</div>
+    </div>
+
+    <div class="right">
+    </div>
+    <div class="bottom">
     </div>
 </div>
 {% endif %}
 
 
 {% if item is defined %}
-<div class="newPost" id='{{ item.id }}'>
-    <input type="text" placeholder="Enter title here" value='{{ item.title }}'>
-    <!-- trumbowyg usage, give credit on the readme -->
-    <div class="editor">
-	<div class='holder'>
-	    {{ item.content|safe }}
+<div class="post flex two">
+    <div class="left flex one">
+	<div class="top" id='{{ item.id }}'>
+	    <input type="text" placeholder="Enter title here" value='{{ item.title }}'>
+	    <!-- trumbowyg usage, give credit on the readme -->
+	    <div class="editor">
+		<div class='holder'>
+		    {{ item.content|safe }}
+		</div>
+	    </div>
+	    <div class="buttons">
+		<!--<button type="button">save draft</button>-->
+		<button data-func="clear" type="button">clear</button>
+		<button data-func="save" type="button">save</button>
+	    </div>
+	</div>
+	<div class="bottom">
 	</div>
     </div>
-    <div class="buttons">
-	<!--<button type="button">save draft</button>-->
-	<button data-func="clear" type="button">clear</button>
-	<button data-func="save" type="button">save</button>
+    <div class="right">
+    <div class="accordion-container">
+      <div class="set">
+	<a href="#">
+	    Publish
+	  <i class="fa fa-plus"></i>
+	</a>
+	<div class="content">
+	    <div class="flex two top">
+	    <button class='savedraft'>Save Draft</button>
+	    <button class='preview'>Preview</button>
+	    </div>
+	    <div class="middle">
+		<div class='status'>
+		    <p>Status: <strong>Draft</strong></p><a>Edit</a>
+		</div>
+		<div class='visibility'>
+		    <p>Visibility: <strong>Public</strong></p><a>Edit</a>
+		</div>
+		<div class='publish'>
+		    <p>Publish: <strong>Immediately</strong></p><a>Edit</a>
+		</div>
+	    </div>
+	    <div class="flex two bottom">
+	    <a class='trash'>Move to Trash</a>
+	    <button class='publish'>Publish</button>
+	    </div>
+	</div>
+      </div>
+      {% if category is not none and category is defined %}
+      <div class="set">
+	<a href="#">
+	    Category
+	  <i class="fa fa-plus"></i>
+	</a>
+	<div class="content">
+	    <div class="categories">
+	    {% for item in category %}
+	    <label>
+		<input name='chk[]' type="checkbox">
+		<span class="checkable">{{ item }}</span>
+	    </label>
+	    {% endfor %}
+	    </div>
+	</div>
+      </div>
+      {% endif %}
+      {% if postType is not none and postType is defined %}
+      <div class="set">
+	<a href="#">
+	    Post Type
+	  <i class="fa fa-plus"></i>
+	</a>
+	<div class="content">
+	    <div class="postType">
+	    {% for item in postType %}
+	    <label>
+		<input name='chk[]' type="radio">
+		<span class="checkable">{{ item }}</span>
+	    </label>
+	    {% endfor %}
+	    </div>
+	</div>
+      </div>
+      {% endif %}
+      <div class="set">
+	<a href="#">
+	    Tags
+	  <i class="fa fa-plus"></i>
+	</a>
+	<div class="content">
+	    <div class="tags">
+		<input type="text" class='add'><button>Add</button>
+		<div class='tags-added'></div>
+	    </div>
+	</div>
+      </div>
     </div>
-</div>
 {% endif %}
 
 
