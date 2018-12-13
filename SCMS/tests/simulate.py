@@ -8,8 +8,9 @@ def fakePosts(db, Posts):
     for i in range(50):
         title = fake.sentence(
             nb_words=9, variable_nb_words=True, ext_word_list=None)
-        content = "<p>{}</p><p>{}</p>".format(''.join(fake.paragraphs(nb=2, ext_word_list=None)),
-                                              ''.join(fake.paragraphs(nb=2, ext_word_list=None)))
+        content = "<p>{}</p><p>{}</p>".format(
+            ''.join(fake.paragraphs(nb=2, ext_word_list=None)),
+            ''.join(fake.paragraphs(nb=2, ext_word_list=None)))
         excerpt = ''.join(fake.paragraphs(nb=2, ext_word_list=None))
         date_posted = fake.date_time().strftime("%Y-%m-%d %H:%M:%S")
         user_id = 1

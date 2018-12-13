@@ -1,6 +1,5 @@
 from flask import (Flask, render_template, request, session, current_app,
                    jsonify, abort, redirect, url_for, Blueprint)
-from SCMS.core.models import Users
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, current_user
 from SCMS import db
@@ -12,7 +11,8 @@ import os
 
 users = Blueprint('users', __name__, static_folder=os.path.join(
     current_app.root_path, 'core/static'),
-    template_folder=os.path.join(current_app.root_path, 'core/templates'),
+    template_folder=os.path.join(
+        current_app.root_path, 'core/templates'),
     url_prefix='/')
 
 
@@ -28,11 +28,14 @@ def login():
     if request.method == "POST":
         code = False
         if form.validate_on_submit():
-            user = Users.query.filter_by(username=form.username.data).first()
+            user = Users.query.filter_by(
+                username=form.username.data).first()
             if user:
-                if check_password_hash(user.password, form.password.data):
+                if check_password_hash(
+                        user.password, form.password.data):
                     login_user(user)
-                    return redirect(url_for("users.register"))
+                    return redirect(
+                        url_for("users.register"))
                 else:
                     code = 401
                     msg = "Wrong Username or Password"
@@ -43,8 +46,9 @@ def login():
             if code:
                 return jsonify(code=code, message=msg)
         else:
-            return jsonify(code=401, message="Validation Error",
-                           errors=form.errors)
+            return jsonify(
+                code=401, message="Validation Error",
+                errors=form.errors)
 
     return render_template("admin-login.html", form=form)
 
@@ -63,14 +67,17 @@ def register():
         if form.validate_on_submit():
             hashPassword = generate_password_hash(
                 form.password.data, method='sha256')
-            newUser = Users(username=form.username.data,
-                            email=form.email.data, password=hashPassword)
+            newUser = Users(
+                username=form.username.data,
+                email=form.email.data, password=hashPassword)
             db.session.add(newUser)
             db.session.commit()
-            return jsonify(code=301, message="Registration Succesful")
+            return jsonify(
+                code=301, message="Registration Succesful")
         else:
-            return jsonify(code=401, message="Validation Error",
-                           errors=form.errors)
+            return jsonify(
+                code=401, message="Validation Error",
+                errors=form.errors)
 
     return render_template("admin-login.html", form=form)
 

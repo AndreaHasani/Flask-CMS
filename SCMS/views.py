@@ -19,5 +19,6 @@ def index():
 
 @main.route("/admin/static/<path:filename>", methods=["GET", "POST"])
 def admin(filename):
-    return send_from_directory(current_app.config['ADMIN_STATIC'],
-                               filename=filename)
+    return send_from_directory(
+        current_app.config['ADMIN_STATIC'],
+        filename=filename)

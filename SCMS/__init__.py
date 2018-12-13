@@ -3,9 +3,11 @@ from flask_login import LoginManager
 from flask_restful import Api
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
-from SCMS.core.config import Config
+from SCMS.core.dynaconf import configure_dynaconf
 from werkzeug.security import generate_password_hash, check_password_hash
 from SCMS.tests.simulate import fakePosts
+from SCMS.core import configure_extensions, configure_extension
+from os import urandom
 
 db = SQLAlchemy()
 csrf = CSRFProtect()
@@ -14,9 +16,10 @@ login_manager = LoginManager()
 api = Api(prefix='/api/v1')
 
 
-def create_app(config_class=Config):
+def create_app():
     application = Flask(__name__)
-    application.config.from_object(Config)
+    application.config["SECRET_KEY"] = urandom(24)
+    configure_dynaconf(application)
     login_manager.init_app(application)
     csrf.init_app(application)
     db.init_app(application)
@@ -51,6 +54,7 @@ def create_app(config_class=Config):
 
         # Fake posts
         fakePosts(db, Posts)
+        configure_extensions(application)
 
     application.register_blueprint(users, url_prefix='/admin')
     application.register_blueprint(main)
